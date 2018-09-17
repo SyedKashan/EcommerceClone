@@ -24,7 +24,8 @@ $("#pwd").keyup(function(){
 			}
 		});}
 	});
-	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
+	
+	//$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
 	
 	$('select').select2();
 	
@@ -98,6 +99,28 @@ $("#pwd").keyup(function(){
 				required:true,
 				
 			}
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
+
+	$("#add_product_validate").validate({
+		rules:{
+			productname:{required: true},
+			description:{required:true},
+			url:{required:true},
+			parentId:{required:true},	
+			fileinput:{required:true},
+			price:{required:true},
+			color:{required:true},
+			code:{required:true},	
 		},
 		errorClass: "help-inline",
 		errorElement: "span",
