@@ -118,7 +118,7 @@ $("#pwd").keyup(function(){
 			url:{required:true},
 			parentId:{required:true},	
 			fileinput:{required:true},
-			price:{required:true},
+			price:{required:true,number:true},
 			color:{required:true},
 			code:{required:true},	
 		},

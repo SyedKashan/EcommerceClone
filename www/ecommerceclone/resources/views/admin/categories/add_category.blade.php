@@ -4,7 +4,7 @@
 <div id="content">
     <div id="content-header">
             <div id="breadcrumb"> <a href="/admin/dashboard" title="Home" class="tip-bottom"><i class="icon-home">
-                </i> Home</a><a href="/admin/settings" class="current">Settings</a><a href="/admin/categories/add_category" class="current">Category</a> </div>
+                </i> Home</a><a href="/admin/categories/add_category" class="current">Category</a> </div>
 
     <div class="container-fluid"><hr>
       <div class="row-fluid">

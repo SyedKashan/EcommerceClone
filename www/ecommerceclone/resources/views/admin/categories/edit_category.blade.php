@@ -17,7 +17,6 @@
                         <label class="control-label">New Category Name</label>
                         <div class="controls">
                           <input type="text" name="categoryname" id="categoryname" value="{{$editableCategory->name}}" />
-                          <span id="chkpwd"></span>
                         </div>
                       </div>
                       <div class="control-group" id="displayer">

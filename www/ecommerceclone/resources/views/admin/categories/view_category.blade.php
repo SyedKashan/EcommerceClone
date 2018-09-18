@@ -2,7 +2,7 @@
 @section('contents')
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="/admin/dashboard" title="Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="/admin/settings" class="current">Settings</a><a href="/admin/add_category" class="current">Category</a>  <a href="/admin/view_category" class="current">Tables</a> </div>
+    <div id="breadcrumb"> <a href="/admin/dashboard" title="Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="/admin/add_category" class="current">Category</a><a href="/admin/view_category" class="current">View Category</a></div>
     @if(Session::has('flash_message_error'))
  <div class="alert alert-success alert-dismissable" role="alert">
         <a href="/admin/view_category" class="close" data-dismiss="alert" aria-label="close">&times;</a>

@@ -64,9 +64,9 @@ function resetMenu() {
  <script src="{{asset('js/backendJs/select2.min.js')}}"></script> 
  <script src="{{asset('js/backendJs/matrix.popover.js')}}"></script> 
  <script src="{{asset('js/backendJs/jquery.dataTables.min.css')}}"></script> 
-
  <script src="{{asset('js/backendJs/matrix.tables.js')}}"></script>
  <script src="{{asset('js/backendJs/matrix.form_validation.js')}}"></script> 
+ <script src="{{asset('js/matrix.popover.js')}}"></script>
  
 
 </body>
