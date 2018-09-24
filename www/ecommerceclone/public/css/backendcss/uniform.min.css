@@ -580,7 +580,7 @@ div.uploader span.filename {
 }
 
 div.uploader input {
-  opacity: 100 !important;
+  opacity: 100;
   filter: alpha(opacity:100);
   position: absolute;
   top: 0;

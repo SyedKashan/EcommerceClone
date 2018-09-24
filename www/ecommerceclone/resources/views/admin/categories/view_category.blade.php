@@ -53,7 +53,8 @@
                   </td>
                   <td>{{$category->created_at}}</td>
                   <td>{{$category->updated_at}}</td>
-                  <td><a href="/admin/edit_category/{{$category->id}}" class="btn btn-primary btn-mini">Edit</a><a href="/admin/deletecategory/{{$category->id}}" class="btn btn-danger btn-mini">Delete</a></td>
+                  <td><a href="/admin/edit_category/{{$category->id}}" class="btn btn-primary btn-mini">Edit</a>
+                  <a id="delcategory" href="javascript:" rel="{{$category->id}}" rel1="deletecategory" class="btn btn-danger btn-mini deleteRecord">Delete</a></td>
                 </tr>
                 @endforeach
               </tbody>

@@ -43,7 +43,7 @@
                         <div class="control-group">
                         <label class="control-label">URL</label>
                         <div class="controls">
-                        <input type="text" name="url" id="url" placeholder="e.g http://example.com" />
+                        <input pattern="https?://.+" type="text" name="url" id="url" placeholder="e.g http://example.com" />
                         </div>
                         </div>
                        

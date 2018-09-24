@@ -30,7 +30,7 @@
                               <div class="controls"  style="width: 260px;"> 
                                 <select name="parentId" id="parentId">
                                 @foreach($level as $val)
-                                <option value="{{$val->id}}">{{$val->name}}
+                                <option value="{{$val->id}}" disabled >{{$val->name}}
                                 @foreach($sublevel as $subval)
                                 @if($subval->parentId == $val->id)
                                 <option value="{{$subval->id}}">**{{$subval->name}}</option>
@@ -50,7 +50,7 @@
                         <div class="control-group">
                         <label class="control-label">URL</label>
                         <div class="controls">
-                        <input type="text" name="url" id="url" style="width: 220px;" placeholder="e.g http://example.com" />
+                        <input pattern="https?://.+" type="text" name="url" id="url" style="width: 220px;" placeholder="e.g http://example.com" />
                         </div>
                       </div>
                           <div class="control-group">

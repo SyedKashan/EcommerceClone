@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="{{asset('css/backendcss/fullcalendar.css')}}" />
 <link rel="stylesheet" href="{{asset('css/backendcss/matrix-style.css')}}" />
 <link rel="stylesheet" href="{{asset('css/backendcss/matrix-media.css')}}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" />
+
 <link href="{{asset('fonts/backendFonts/css/font-awesome.css')}}" rel="stylesheet" />
 <link rel="stylesheet" href="{{asset('css/backendcss/jquery.gritter.css')}}" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
@@ -63,11 +65,11 @@ function resetMenu() {
  <script src="{{asset('js/backendJs/jquery.uniform.js')}}"></script> 
  <script src="{{asset('js/backendJs/select2.min.js')}}"></script> 
  <script src="{{asset('js/backendJs/matrix.popover.js')}}"></script> 
- <script src="{{asset('js/backendJs/jquery.dataTables.min.css')}}"></script> 
+ <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> 
  <script src="{{asset('js/backendJs/matrix.tables.js')}}"></script>
  <script src="{{asset('js/backendJs/matrix.form_validation.js')}}"></script> 
- <script src="{{asset('js/matrix.popover.js')}}"></script>
- 
+ <script src="{{asset('js/backendJs/matrix.popover.js')}}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
 
 </body>
 </html>

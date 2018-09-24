@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use App\ProductAttributes;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Image;
@@ -17,12 +18,14 @@ class ProductsController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
             $var = $data['parentId']; 
-            $levels = Category::where(['id'=>$var])->get();
-            foreach($levels as $level){
-                $levelval = $level->parentId;
-            }
-            $cats = Category::where(['id'=>$levelval])->get();
-            foreach($cats as $cat){$catvalue = $cat->id;}
+            $levels = Category::where(['id'=>$var])->first();
+            // foreach($levels as $level){
+            //     $levelval = $level->parentId;
+            // }
+            $level = $levels->parentId;
+            $cats = Category::where(['id'=>$level])->first();
+            //foreach($cats as $cat){}
+                $catvalue = $cats->id;
              $product = new Product;
              $product->productname = $data['productname'];
              $product->subCategoryId = $data['parentId'];
@@ -34,6 +37,7 @@ class ProductsController extends Controller
              $product->categoryId = $catvalue;
              //image process
              $filename = '';
+            
              if($request->hasFile('image'))
              {
                  $image_tmp = Input::file('image');
@@ -70,8 +74,91 @@ class ProductsController extends Controller
     }
 
     public function editproduct(request $request,$id = null){
-        $editableproduct = Product::where(['id'=>$id])->get();
-        return view('/admin/products/edit_product')->with(compact($editableproduct));
+        
+        $editableproduct = Product::where(['id'=>$id])->first();
+        if ($request->isMethod('post')){
+            $data = $request->all();
+            $var = $data['parentId'];
+            $levels = Category::where(['id'=>$var])->first();
+            $level =$levels->parentId;
+            $cats = Category::where(['id'=>$level])->first();
+            $cat = $cats->id;
+            $editableproduct->productname = $data['product'];
+            $editableproduct->subCategoryId = $data['parentId'];
+            $editableproduct->productCode = $data['code'];
+            $editableproduct->productColor = $data['color'];
+            $editableproduct->description = $data['description'];
+            $editableproduct->url = $data['url'];
+            $editableproduct->price = $data['price'];
+            $editableproduct->categoryId = $cat;
+            //image process
+            $filename = '';
+            
+            if($request->hasFile('image'))
+            {   
+                $image_tmp = Input::file('image');
+                if($image_tmp->isValid())
+                {
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $filename = rand(111,99999).".".$extension;
+                    $large_image_path = 'svg/backendImages/products/largeimage/'.$filename;
+                    $medium_image_path = 'svg/backendImages/products/mediumimage/'.$filename;
+                    $small_image_path = 'svg/backendImages/products/smallimage/'.$filename;
+                  //Image Resize
+                    Image::make($image_tmp)->save($large_image_path);
+                    Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(300,300)->save($small_image_path);         
+                    //Store image name in products table
+                    
+                    $editableproduct->image = $filename; }
+            }
+            $editableproduct->save();
+            return redirect('/admin/view_products')->with('flash_message_error','Product Updated successfully!');  
+
+        }
+
+        $level = Category::where(['parentId'=> 0])->get();
+        $sublevel = Category::where ('parentId','>',0)->get();
+        return view('/admin/products/edit_product')->with(compact('editableproduct','level','sublevel'));
+
+    }
+
+    public function deleteproduct($id = null){
+        $product = Product::where(['id'=>$id])->first();
+        $product->delete();
+        return redirect('/admin/view_products');
+
+
+    }
+
+    public function addAttribute(request $request,$id = null){
+        $product = Product::with('attributes')->where(['id'=>$id])->first();
+        if ($request->isMethod('post')){
+            $data = $request->all();
+            
+            foreach($data['sku'] as $key => $val){
+            
+                if (!empty($val)){
+                $attr = new ProductAttributes;
+            $attr->productid = $id;
+            $attr->sku =$val;
+            $attr->stock = $data['stock'][$key];
+            $attr->price = $data['price'][$key];
+            $attr->size = $data['size'][$key];
+            $attr->save();
+            }
+        }
+        return redirect('/admin/view_products');
+        }
+        
+        return view('/admin/products/add_attributes')->with(compact('product'));
+    }
+
+    public function deleteAttribute($id=null){
+        $attr = ProductAttributes::where(['id'=>$id])->first();
+        $attr->delete();
+        return redirect('admin/view_products')->with('flash_message_error','Attribute deleted!');
+
 
     }
 }

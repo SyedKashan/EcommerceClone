@@ -39,7 +39,7 @@
                   <div class="control-group">
                     <label class="control-label">New URL</label>
                     <div class="controls">
-                      <input type="text" name="url" id="url" placeholder="e.g http://example.com" value="{{$editableCategory->url}}" />
+                      <input pattern="https?://.+" type="text" name="url" id="url" placeholder="e.g http://example.com" value="{{$editableCategory->url}}" />
                     </div>
                   </div>
                   <div class="form-actions">

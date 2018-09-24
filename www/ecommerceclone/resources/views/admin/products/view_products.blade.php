@@ -76,9 +76,11 @@
                 <td>{{$Product->price}}</td>
                 <td>{{$category->created_at}}</td>
                 <td>{{$category->updated_at}}</td>
-                <td style="width:50px"><a href="/admin/edit_product/{{$Product->id}}" class="btn btn-primary btn-mini" style="width:40px">Edit</a>
-                    <a href="#mymodal{{$Product->id}}" data-toggle="modal" class="btn btn-default btn-mini" style="width:40px">View</a>
-                    <a href="/admin/deletecategory/{{$category->id}}" class="btn btn-danger btn-mini" style="width:40px">Delete</a>
+                <td style="width:50px">
+                  <a href="/admin/add_attributes/{{$Product->id}}" class="btn btn-info btn-mini" style="width:40px">Add</a>
+                  <a href="/admin/edit_product/{{$Product->id}}" class="btn btn-primary btn-mini" style="width:40px">Edit</a>
+                    <a href="#mymodal{{$Product->id}}" data-toggle="modal" class="btn btn-success btn-mini" style="width:40px">View</a>
+                <a href="javascript:" class="btn btn-danger btn-mini deleteRecord" style="width:40px" id="delproduct" rel="{{$Product->id}}" rel1="deleteproduct">Delete</a>
                 </td>
               </tr>
               @endforeach

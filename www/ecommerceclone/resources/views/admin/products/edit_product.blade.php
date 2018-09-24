@@ -9,42 +9,74 @@
         <div class="span12">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-                <h5>Edit Category</h5>
+                <h5>Edit Product</h5>
               </div>
               <div class="widget-content nopadding">
-              <form class="form-horizontal" method="post" action="/admin/editvalue/{{$editableproduct->id}}" name="add_category_validate" id="add_category_validate" novalidate="novalidate">{{csrf_field()}}
+              <form enctype="multipart/form-data" class="form-horizontal" method="post" action="/admin/editvalue/{{$editableproduct->id}}" name="add_category_validate" id="add_category_validate" novalidate="novalidate">{{csrf_field()}}
                     <div class="control-group">
                         <label class="control-label">New Product Name</label>
                         <div class="controls">
-                          <input type="text" name="categoryname" id="categoryname" value="{{$editableproduct->productname}}" />
-                          
+                          <input type="text" name="product" id="product" value="{{$editableproduct->productname}}" />
                         </div>
                       </div>
-                      <div class="control-group" id="displayer">
-                        <label class="control-label">Category Level</label>
-                        <div class="controls">
-                          <select name="parentId" style="width: 220px;">
-                            <option value="0">Main Category</option>
-                          @foreach($level as $value)
-                          <option value="{{$value->id}}">{{$value->name}}</option>
-                          @endforeach
+                      <div class="control-group">
+                        <label class="control-label">Select Category</label>
+                          <div class="controls"  style="width: 260px;"> 
+                            <select name="parentId" id="parentId">
+                            @foreach($level as $val)
+                            <option value="{{$val->id}}" disabled>{{$val->name}}
+                            @foreach($sublevel as $subval)
+                            @if($subval->parentId == $val->id)
+                            <option value="{{$subval->id}}">**{{$subval->name}}</option>
+                            @endif
+                            @endforeach
+                            </option>
+                            @endforeach
                           </select>
                         </div>
-                        </div>
+                      </div>
                     <div class="control-group">
                     <label class="control-label">New Description</label>
                     <div class="controls">
-                      <textarea type="textarea" name="description" id="description" >{{$editableCategory->description}}</textarea> 
+                      <textarea type="textarea" name="description" id="description" >{{$editableproduct->description}}</textarea> 
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label">New URL</label>
                     <div class="controls">
-                      <input type="text" name="url" id="url" placeholder="e.g http://example.com" value="{{$editableCategory->url}}" />
+                      <input pattern="https?://.+" type="text" name="url" id="url" placeholder="e.g http://example.com" value="{{$editableproduct->url}}" />
                     </div>
                   </div>
+                  <div class="control-group">
+                    <label class="control-label">New Product Code</label>
+                    <div class="controls">
+                    <input type="text" name="code" id="code" style="width: 220px;" value="{{$editableproduct->productCode}}" />
+                    </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">New Product Color</label>
+                        <div class="controls">
+                        <input type="text" name="color" id="color" style="width: 220px;" value="{{$editableproduct->productColor}}" />
+                        </div>
+                        </div>
+              <div class="control-group">
+              <label class="control-label">New Price</label>
+              <div class="controls">
+              <input type="text" name="price" id="price" style="width: 220px;" value="{{$editableproduct->price}}" />
+              </div>
+              </div>
+              <div class="control-group">
+                  <label class="control-label">File upload</label>
+                  <div class="controls">
+                    <div class="uploader" id="uniform-undefined">
+                      <input type="file" name="image" id="image" size="19" style="opacity: 0 !important;">
+                      <span class="filename">No file selected</span>
+                      <span class="action">Choose File</span></div>
+                    <img src="{{asset('svg/backendImages/products/smallimage/'.$editableproduct->image)}}" width="40px" />
+                  </div>
+                </div>
                   <div class="form-actions">
-                    <input type="submit" value="Edit" class="btn btn-success">
+                    <input type="submit" value="Update" class="btn btn-success">
                   </div>
                 </form>
               </div>
