@@ -16,7 +16,7 @@
 // });
 
 Route::match(['get','post'],'/admin', 'AdminController@login');
-Route::match(['get','post'],'/', 'AdminController@login');
+Route::match(['get','post'],'/index', 'indexController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
