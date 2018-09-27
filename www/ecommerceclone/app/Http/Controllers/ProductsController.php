@@ -161,4 +161,23 @@ class ProductsController extends Controller
 
 
     }
+
+    public function showProducts($id = null){
+        if(!empty($id)){
+            $products = Product::where(['categoryId'=>$id])->get();
+            $categories = Category::where(['parentId'=>0])->get();
+        $subcategories = Category::where('parentId','>',0)->get();
+        $categoryname = Category::where(['id'=>$products[0]->categoryId])->first();
+        return view('/frontView/products')->with(compact('categories','subcategories','products','categoryname'));
+        }
+        else{
+            $products = Product::all();
+            $categories = Category::where(['parentId'=>0])->get();
+        $subcategories = Category::where('parentId','>',0)->get();
+        $categoryname="All Products";
+        return view('/frontView/products')->with(compact('categories','subcategories','products','categoryname'));
+        }
+        
+        
+    }
 }
