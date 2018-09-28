@@ -19,6 +19,8 @@ Route::match(['get','post'],'/admin', 'AdminController@login');
 Route::match(['get','post'],'/', 'indexController@index');
 Route::match(['get','post'],'/Products', 'ProductsController@showProducts');
 Route::match(['get','post'],'/Products/{id}', 'ProductsController@showProducts');
+Route::match(['get','post'],'/productsdetail/{id}', 'ProductsController@showProductDetail');
+Route::match(['get','post'],'/cart', 'cartController@showCart');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

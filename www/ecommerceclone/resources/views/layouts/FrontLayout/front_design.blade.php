@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home | E-Shopping</title>
+	<title> E-Shopping </title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="{{asset('svg/frontendImages/icons/favicon.png')}}"/>
@@ -56,7 +56,9 @@
         </span>
     </div>
     
-@yield('container')
+<!-- Container Selection -->
+<div id="dropDownSelect1"></div>
+<div id="dropDownSelect2"></div>
         {{-- <script src="http://code.jquery.com/jquery-2.x-git.min.js"></script> --}}
         <script type="text/javascript" src="{{asset('js/frontendJs/jquery/jquery-3.2.1.min.js')}}"></script> 
 				<script type="text/javascript" src="{{asset('js/frontendJs/daterangepicker/moment.min.js')}}"></script>
@@ -66,17 +68,41 @@
             <script type="text/javascript" src="{{asset('js/frontendJs/bootstrap/js/popper.js')}}"></script>
             <script type="text/javascript" src="{{asset('js/frontendJs/bootstrap/js/bootstrap.min.js')}}"></script> 
             <script type="text/javascript" src="{{asset('js/frontendJs/select2/select2.min.js')}}"></script>
-@yield('containerDesign')
+            <script type="text/javascript">
+                $(".selection-1").select2({
+                    minimumResultsForSearch: 20,
+                    dropdownParent: $('#dropDownSelect1')
+                });
+            
+                $(".selection-2").select2({
+                    minimumResultsForSearch: 20,
+                    dropdownParent: $('#dropDownSelect2')
+                });
+            </script>
             <script type="text/javascript" src="{{asset('js/frontendJs/slick/slick.min.js')}}"></script>
             <script type="text/javascript" src="{{asset('js/frontendJs/slick-custom.js')}}"></script>        
             <script type="text/javascript" src="{{asset('js/frontendJs/countdowntime/countdowntime.js')}}"></script>
             <script type="text/javascript" src="{{asset('js/frontendJs/lightbox2/js/lightbox.min.js')}}"></script>
             <script type="text/javascript" src="{{asset('js/frontendJs/sweetalert/sweetalert.min.js')}}"></script>
-@yield('sweetalert')
+            <script type="text/javascript">
+                $('.block2-btn-addcart').each(function(){
+                    var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+                    $(this).on('click', function(){
+                        swal(nameProduct, "is added to cart !", "success");
+                    });
+                });
+            
+                $('.block2-btn-addwishlist').each(function(){
+                    var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+                    $(this).on('click', function(){
+                        swal(nameProduct, "is added to wishlist !", "success");
+                    });
+                });
+            </script>
             <script src="{{asset('js/frontendJs/main.js')}}"></script> 
-            <script src="{{asset('js/frontendJs/main.min.js')}}"></script> 
+            {{-- <script src="{{asset('js/frontendJs/main.min.js')}}"></script>  --}}
             <script src="{{asset('js/frontendJs/map-custom.js')}}"></script> 
-            <script src="{{asset('js/frontendJs/map-custom.min.js')}}"></script> 
+            {{-- <script src="{{asset('js/frontendJs/map-custom.min.js')}}"></script>  --}}
             
            
 </body>

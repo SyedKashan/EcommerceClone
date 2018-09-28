@@ -1,13 +1,10 @@
 @extends('layouts/FrontLayout/front_design')
 @section('contents')
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(svg/frontendImages/heading-pages-02.jpg);">
+	<section class="bg-title-page p-b-150 flex-col-c-m" style="background-image: url(../svg/frontendImages/logo.png)">
 		<h2 class="l-text2 t-center">
-			Women
+			New Arrivals 2018
 		</h2>
-		<p class="m-text13 t-center">
-			New Arrivals Women Collection 2018
-		</p>
 	</section>
 @include('layouts/FrontLayout/front_sidebar',compact('categories'))
 	
@@ -53,12 +50,12 @@
 								</div>
 
 								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="/productsdetail/{{$product->id}}" class="block2-name dis-block s-text3 p-b-5">
 										{{$product->productname}}
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
-										{{$product->price}}
+										Rs.{{$product->price}}
 									</span>
 								</div>
 							</div>
@@ -66,50 +63,9 @@
 
 						
 @endforeach
-					{{-- <!-- Pagination -->
-					<div class="pagination flex-m flex-w p-t-26">
-						<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-						<a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
-					</div> --}}
+					
 				</div>
 			</div>
 		
 	</section>
 	@endsection	
-@section('container')
-    <!-- Container Selection -->
-	<div id="dropDownSelect1"></div>
-	<div id="dropDownSelect2"></div>
-@endsection
-@section('containerDesign')
-<script type="text/javascript">
-    $(".selection-1").select2({
-        minimumResultsForSearch: 20,
-        dropdownParent: $('#dropDownSelect1')
-    });
-
-    $(".selection-2").select2({
-        minimumResultsForSearch: 20,
-        dropdownParent: $('#dropDownSelect2')
-    });
-</script>
-    
-@endsection
-
-@section('sweetalert')
-<script type="text/javascript">
-    $('.block2-btn-addcart').each(function(){
-        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-        $(this).on('click', function(){
-            swal(nameProduct, "is added to cart !", "success");
-        });
-    });
-
-    $('.block2-btn-addwishlist').each(function(){
-        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-        $(this).on('click', function(){
-            swal(nameProduct, "is added to wishlist !", "success");
-        });
-    });
-</script>
-@endsection

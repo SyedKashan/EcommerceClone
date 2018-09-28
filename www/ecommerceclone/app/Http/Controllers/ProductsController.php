@@ -171,13 +171,21 @@ class ProductsController extends Controller
         return view('/frontView/products')->with(compact('categories','subcategories','products','categoryname'));
         }
         else{
-            $products = Product::all();
-            $categories = Category::where(['parentId'=>0])->get();
+        $products = Product::all();
+        $categories = Category::where(['parentId' => 0])->get();
         $subcategories = Category::where('parentId','>',0)->get();
         $categoryname="All Products";
         return view('/frontView/products')->with(compact('categories','subcategories','products','categoryname'));
         }
         
         
+    }
+    public function showProductDetail($id = null){
+        $product = Product::where(['id'=> $id])->first();
+        $allproducts= Product::all();
+        $categories = Category::where(['parentId'=>0])->get();
+        $subcategories = Category::where('parentId','>',0)->get();
+        return view('/frontView/productDetail')->with(compact('product','categories','subcategories','allproducts'));
+
     }
 }

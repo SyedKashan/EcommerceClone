@@ -47,7 +47,7 @@
                             <a href="/Products">Shop</a>
                         </li>
                         <li>
-                            <a href="cart.html">Features</a>
+                            <a href="/cart">Cart</a>
                         </li>
                         <li>
                             <a href="about.html">About</a>

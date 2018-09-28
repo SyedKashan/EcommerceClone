@@ -194,7 +194,7 @@
                                 </div>
     
                                 <div class="block2-txt p-t-20">
-                                    <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                                    <a href="/productsdetail/{{$product->id}}" class="block2-name dis-block s-text3 p-b-5">
                                         {{$product->productname}}
                                     </a>
     
@@ -335,7 +335,7 @@
             </div>
         </section>
 @endsection
-@section('container')
+{{-- @section('container')
 	<!-- Container Selection1 -->
 	<div id="dropDownSelect1"></div>
 
@@ -366,4 +366,4 @@
     });
 </script>
 @endsection
-
+ --}}

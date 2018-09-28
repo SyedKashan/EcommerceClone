@@ -79,3 +79,6 @@
 2018-09-27T11:59:30.290978Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
 2018-09-27T11:59:30.290978Z 0 [ERROR] Cannot open Windows EventLog; check privileges, or start server with --log_syslog=0
 2018-09-27T11:59:30.290978Z 0 [Note] C:\laragon\bin\mysql\mysql-5.7.19-winx64\bin\mysqld (mysqld 5.7.19) starting as process 9620 ...
+2018-09-28T06:41:49.642842Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2018-09-28T06:41:50.096838Z 0 [ERROR] Cannot open Windows EventLog; check privileges, or start server with --log_syslog=0
+2018-09-28T06:41:50.096838Z 0 [Note] C:\laragon\bin\mysql\mysql-5.7.19-winx64\bin\mysqld (mysqld 5.7.19) starting as process 8668 ...
