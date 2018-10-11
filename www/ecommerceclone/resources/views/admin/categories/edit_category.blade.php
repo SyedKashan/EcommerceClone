@@ -12,7 +12,7 @@
                 <h5>Edit Category</h5>
               </div>
               <div class="widget-content nopadding">
-              <form class="form-horizontal" method="post" action="/admin/editvalue/{{$editableCategory->id}}" name="add_category_validate" id="add_category_validate" novalidate="novalidate">{{csrf_field()}}
+              <form class="form-horizontal" method="post" action="/admin/editcat/{{$editableCategory->id}}" name="add_category_validate" id="add_category_validate" novalidate="novalidate">{{csrf_field()}}
                     <div class="control-group">
                         <label class="control-label">New Category Name</label>
                         <div class="controls">
@@ -42,6 +42,12 @@
                       <input pattern="https?://.+" type="text" name="url" id="url" placeholder="e.g http://example.com" value="{{$editableCategory->url}}" />
                     </div>
                   </div>
+                  <div class="control-group">
+                    <label class="control-label">Status</label>
+                    <div class="controls">
+                    <input  type="checkbox" name="status" id="status" @if($editableCategory->status == 1 ) checked @endif value="1"/>
+                    </div>
+                    </div>
                   <div class="form-actions">
                     <input type="submit" value="Edit" class="btn btn-success">
                   </div>

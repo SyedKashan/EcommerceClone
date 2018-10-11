@@ -16,11 +16,13 @@
 								</a>
 							</li>
 							@foreach($categories as $category)
+							@if($category->status == '1')
 							<li class="p-t-4">
 							<a href="/Products/{{$category->id}}"  class="s-text13 active1">
 							{{$category->name}}
 							</a>
 							</li>
+							@endif
 							@endforeach
 						</ul>
 

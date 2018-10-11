@@ -20,7 +20,10 @@ Route::match(['get','post'],'/', 'indexController@index');
 Route::match(['get','post'],'/Products', 'ProductsController@showProducts');
 Route::match(['get','post'],'/Products/{id}', 'ProductsController@showProducts');
 Route::match(['get','post'],'/productsdetail/{id}', 'ProductsController@showProductDetail');
+Route::match(['get','post'],'/404','indexController@error');
 Route::match(['get','post'],'/cart', 'cartController@showCart');
+Route::match(['get','post'],'/deleteimage/{id}', 'ProductsController@deleteImage');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -37,7 +40,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::match(['get','post'],'admin/view_category','CategoryController@viewcategory');
     Route::match(['get','post'],'/admin/deletecategory/{id}','CategoryController@deletecategory');
     Route::match(['get','post'],'/admin/edit_category/{id}','CategoryController@vieweditcategory');
-    Route::match(['get','post'],'/admin/editvalue/{id}','CategoryController@editcategory');
+    Route::match(['get','post'],'/admin/editcat/{id}','CategoryController@editcategory');
     //routes for ProductsController
 
     Route::match(['get','post'],'admin/add_product','ProductsController@addproduct');

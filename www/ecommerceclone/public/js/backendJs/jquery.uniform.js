@@ -651,13 +651,13 @@ Enjoy!
           }
         }else if(elem.is(":checkbox")){
           //element is a checkbox
-          doCheckbox(elem);
+          //doCheckbox(elem);
         }else if(elem.is(":radio")){
           //element is a radio
           doRadio(elem);
         }else if(elem.is(":file")){
           //element is a file upload
-          doFile(elem);
+          // doFile(elem);
         }else if(elem.is(":text, :password, input[type='email']")){
           doInput(elem);
         }else if(elem.is("textarea")){

@@ -24,6 +24,7 @@ $("#pwd").keyup(function(){
 			}
 		});}
 	});
+	
 	$(".deleteRecord").click(function(){
 		var id = $(this).attr('rel');
 		var deletefunc = $(this).attr('rel1');

@@ -43,9 +43,15 @@
                         <div class="control-group">
                         <label class="control-label">URL</label>
                         <div class="controls">
-                        <input pattern="https?://.+" type="text" name="url" id="url" placeholder="e.g http://example.com" />
+                        <input  type="text" name="url" id="url" placeholder="e.g http://example.com" />
                         </div>
                         </div>
+                        <div class="control-group">
+                          <label class="control-label">Status</label>
+                          <div class="controls">
+                          <input  type="checkbox" name="status" id="status" value="1" />
+                          </div>
+                          </div>
                        
                         <div class="form-actions">
                         <input type="submit" value="Add" class="btn btn-success">

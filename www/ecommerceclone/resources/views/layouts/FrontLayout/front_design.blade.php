@@ -29,25 +29,26 @@
         @extends('layouts/FrontLayout/front_footer')
         @section('foot')
 @foreach ($categories as $category)
-    <ul class="p-b-9 main_menu1 ">
+@if($category->status == '1')
+    <ul class="p-b-9 main_menu1 ">    
         <li>
         <a href="#" class="s-text7">
         {{$category->name}}
          </a>
+         @foreach ($subcategories as $sub)
+         @if($sub->parentId == $category->id && $sub->status == '1')
          <ul class="sub_menu1">
-        @foreach ($subcategories as $sub)
-        @if($sub->parentId == $category->id)
-        
         <li >
                 <a href="#" class="s-text7">
                 -> {{$sub->name}}
                 </a>
         </li>
-        @endif
-        @endforeach
     </ul>
+    @endif
+    @endforeach
         </li>
     </ul>
+    @endif
 @endforeach
 @endsection
 <div class="btn-back-to-top bg0-hov" id="myBtn">

@@ -27,7 +27,8 @@
 					</div> 
 					<!-- Product -->
 					<div class="row">
-                        @foreach($products as $product)
+						@foreach($products as $product)
+						@if($product['categories']->status == '1')
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<!-- Block2 -->
 							<div class="block2">
@@ -61,7 +62,7 @@
 							</div>
 						</div>
 
-						
+@endif						
 @endforeach
 					
 				</div>

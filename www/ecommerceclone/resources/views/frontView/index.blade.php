@@ -172,6 +172,7 @@
                 <div class="wrap-slick2">
                     <div class="slick2">
                         @foreach($products as $product)
+                        @if($product['categories']->status == '1')
                         <div class="item-slick2 p-l-15 p-r-15">
                             <!-- Block2 -->
                             <div class="block2">
@@ -204,6 +205,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                        @endforeach
                     </div>
                 </div>

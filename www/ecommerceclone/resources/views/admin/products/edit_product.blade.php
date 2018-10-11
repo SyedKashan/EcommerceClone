@@ -72,11 +72,14 @@
                       <input type="file" name="image" id="image" size="19" style="opacity: 0 !important;">
                       <span class="filename">No file selected</span>
                       <span class="action">Choose File</span></div>
-                    <img src="{{asset('svg/backendImages/products/smallimage/'.$editableproduct->image)}}" width="40px" />
-                  </div>
+                      @if($editableproduct->image != "")
+                      <img src="{{asset('svg/backendImages/products/smallimage/'.$editableproduct->image)}}" width="40px" />
+                      <a href="/deleteimage/{{$editableproduct->id}}">Delete</a>
+                      @endif
+                    </div>
                 </div>
                   <div class="form-actions">
-                    <input type="submit" value="Update" class="btn btn-success">
+                    <input type="submit" id="update" value="Update" class="btn btn-success">
                   </div>
                 </form>
               </div>

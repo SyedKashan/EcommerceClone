@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+ use Illuminate\Http\Request;
+
 use App\Product;
 use App\Category;
 use App\ProductAttributes;
@@ -125,14 +126,37 @@ class ProductsController extends Controller
 
     public function deleteproduct($id = null){
         $product = Product::where(['id'=>$id])->first();
+        
         $product->delete();
         return redirect('/admin/view_products');
 
 
     }
 
+    public function deleteImage($id = null){
+        $productimage = Product::where(['id'=>$id])->first();
+        $large_image_path = "svg/backendImages/products/largeimage/";
+        $medium_image_path = "svg/backendImages/products/mediumimage/";
+        $small_image_path = "svg/backendImages/products/smallimage/";
+
+        if(file_exists($large_image_path.$productimage->image)){
+            unlink($large_image_path.$productimage->image);
+        }
+        if(file_exists($medium_image_path.$productimage->image)){
+            unlink($medium_image_path.$productimage->image);
+        }
+        if(file_exists($small_image_path.$productimage->image)){
+            unlink($small_image_path.$productimage->image);
+        }
+        $productimage->image="";
+        $productimage->save();
+        return redirect('/admin/view_products')->with('flash_message_error','Image Deleted!');
+    }
+
     public function addAttribute(request $request,$id = null){
         $product = Product::with('attributes')->where(['id'=>$id])->first();
+        
+        
         if ($request->isMethod('post')){
             $data = $request->all();
             
@@ -163,15 +187,29 @@ class ProductsController extends Controller
     }
 
     public function showProducts($id = null){
+
+        
         if(!empty($id)){
+        $countpro = Category::where(['id'=>$id])->count();
+        if ($countpro == 0)
+        {
+            return view('/frontView/notFound');
+        }
             $products = Product::where(['categoryId'=>$id])->get();
+                $pro = Product::where(['categoryId'=>$id])->count();
+                if ($pro == 0)
+                {
+                    return view('/frontView/notFound');
+                }
             $categories = Category::where(['parentId'=>0])->get();
         $subcategories = Category::where('parentId','>',0)->get();
         $categoryname = Category::where(['id'=>$products[0]->categoryId])->first();
         return view('/frontView/products')->with(compact('categories','subcategories','products','categoryname'));
         }
         else{
-        $products = Product::all();
+            
+        // $products = Product::with('categories')->get();
+        $products = Product::with('categories')->get();
         $categories = Category::where(['parentId' => 0])->get();
         $subcategories = Category::where('parentId','>',0)->get();
         $categoryname="All Products";
@@ -181,6 +219,13 @@ class ProductsController extends Controller
         
     }
     public function showProductDetail($id = null){
+         
+         $countpro = Product::where(['id'=>$id])->count();
+        if ($countpro == 0)
+        {
+            return view('/frontView/notFound');
+        }
+
         $product = Product::where(['id'=> $id])->first();
         $allproducts= Product::all();
         $categories = Category::where(['parentId'=>0])->get();

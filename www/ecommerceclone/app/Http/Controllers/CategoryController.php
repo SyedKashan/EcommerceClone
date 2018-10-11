@@ -14,6 +14,7 @@ class CategoryController extends Controller
        return view('admin/categories/add_category')->with(compact('level'));
     }
     public function add(Request $request){
+        
         if($request->isMethod('post')){
             $data = $request->all();
             $category = new Category;
@@ -21,6 +22,11 @@ class CategoryController extends Controller
             $category->parentId = $data['parentId'];
             $category->description = $data['description'];
             $category->url = $data['url'];
+            if(!empty($data['status'])){$status=1;}
+            else{
+                $status=0;
+            }
+            $category->status = $status;
             $category->save();
             return redirect('/admin/view_category')->with('flash_message_error','Category Created!');
     }
@@ -41,6 +47,8 @@ public function vieweditcategory(Request $request, $id = null){
 
 
 public function editcategory(Request $request, $id = null){
+  
+
     if($request->isMethod('post'))
     {
         $data = $request->all();
@@ -49,6 +57,12 @@ public function editcategory(Request $request, $id = null){
         $editableCategory->description = $data['description'];
         $editableCategory->parentId = $data['parentId'];
         $editableCategory->url = $data['url'];
+        if(!empty($data['status'])){$status=1;}
+            else{
+                $status=0;
+            
+            }
+            $editableCategory->status = $status;
         $editableCategory->save();
         return redirect('/admin/view_category');
     }
